@@ -2,12 +2,21 @@
 
 require_once ("config.php");
 
+// Carrega todos os usuários
 // $usuarios = $sql->select("SELECT * FROM desenvolvedor");
 
-$root = new Usuario();
+// Carrega só um usuário de acordo com o ID
+//$root = new Usuario();
+//$root->loadById(2);
 
-$root->loadById(2);
+// Carrega todos
+//$lista = Usuario::getList();
 
-echo $root;
+// Carrega uma lista de usuários buscando pelo login
+//$search = Usuario::search("j");
 
+// Carrega um usuário usando o login e a senha
+$usuario = new Usuario();
+$usuario->login("rafa", "123456");
+echo $usuario;
 ?>
