@@ -24,12 +24,16 @@ require_once ("config.php");
 // $usuario = new Usuario("cleyton", "senha123");
 // $usuario->insert();
 
-$usuario = new Usuario();
-
+//Atualiza
+// $usuario = new Usuario();
 // $usuario->loadById(28);
+// $usuario->update("bibia", "2050");
 
-$usuario->update(28, "roro", "2019");
+//Deletar
+// $usuario = new Usuario();
+// $usuario->loadById(28);
+// $usuario->delete();
 
-echo $usuario;
+
 
 ?>

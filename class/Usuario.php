@@ -41,7 +41,7 @@ class Usuario {
 
             $row = $results[0];
             
-            $this->setData([0]);
+            $this->setData($results[0]);
         
         }
 
@@ -110,9 +110,8 @@ class Usuario {
         }
     }
 
-    public function update($id, $login, $password) {
+    public function update($login, $password) {
 
-        $this->setId($id);
         $this->setDeslogin($login);
         $this->setDessenha($password);
 
@@ -124,6 +123,20 @@ class Usuario {
             ':ID'=>$this->getId()
         ));
 
+    }
+
+
+    public function delete() {
+
+        $sql = new Sql();
+
+        $sql->query("DELETE FROM desenvolvedor WHERE id = :ID", array (
+            ':ID'=>$this->getId()
+        ));
+
+        $this->setId("0");
+        $this->setDeslogin("");
+        $this->setDessenha("");
     }
 
     public function __construct($login = "", $password = "") { 
