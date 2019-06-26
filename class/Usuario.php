@@ -40,10 +40,8 @@ class Usuario {
         if (count($results) > 0) { 
 
             $row = $results[0];
-
-            $this->setId($row['id']);
-            $this->setDeslogin($row['deslogin']);
-            $this->setDessenha($row['dessenha']);
+            
+            $this->setData([0]);
         
         }
 
@@ -80,9 +78,7 @@ class Usuario {
 
             $row = $results[0];
 
-            $this->setId($row['id']);
-            $this->setDeslogin($row['deslogin']);
-            $this->setDessenha($row['dessenha']);
+            $this->setData([0]);
         
         } else {
 
@@ -90,6 +86,49 @@ class Usuario {
 
         }
 
+    }
+
+    public function setData($data) { 
+
+        $this->setId($data['id']);
+        $this->setDeslogin($data['deslogin']);
+        $this->setDessenha($data['dessenha']);
+
+    }
+
+    public function insert() { 
+
+        $sql = new Sql();
+
+        $results = $sql->select("CALL sp_desenvolvedor_insert(:LOGIN, :PASSWORD)", array(
+            ':LOGIN'=>$this->getDeslogin(),
+            ':PASSWORD'=>$this->getDessenha()
+        ));
+
+        if (count($results) > 0) {
+            $this->setData($results[0]);
+        }
+    }
+
+    public function update($id, $login, $password) {
+
+        $this->setId($id);
+        $this->setDeslogin($login);
+        $this->setDessenha($password);
+
+        $sql = new Sql();
+
+        $sql->query("UPDATE desenvolvedor SET deslogin = :LOGIN, dessenha = :PASSWORD WHERE id = :ID", array(
+            ':LOGIN'=>$this->getDeslogin(),
+            ':PASSWORD'=>$this->getDessenha(),
+            ':ID'=>$this->getId()
+        ));
+
+    }
+
+    public function __construct($login = "", $password = "") { 
+        $this->setDeslogin($login);
+        $this->setDessenha($password);
     }
 
 

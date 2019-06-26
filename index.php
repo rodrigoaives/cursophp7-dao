@@ -16,7 +16,20 @@ require_once ("config.php");
 //$search = Usuario::search("j");
 
 // Carrega um usuário usando o login e a senha
+//$usuario = new Usuario();
+//$usuario->login("rafa", "123456");
+//echo $usuario;
+
+//Cria um novo usuario
+// $usuario = new Usuario("cleyton", "senha123");
+// $usuario->insert();
+
 $usuario = new Usuario();
-$usuario->login("rafa", "123456");
+
+// $usuario->loadById(28);
+
+$usuario->update(28, "roro", "2019");
+
 echo $usuario;
+
 ?>
